@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    application
 }
 
 group = "org.app.pollutionSim"
@@ -9,6 +10,10 @@ val lwjglNatives = "natives-windows"
 
 repositories {
     mavenCentral()
+}
+
+application {
+    mainClass = "Main"
 }
 
 dependencies {
