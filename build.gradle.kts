@@ -105,6 +105,7 @@ dependencies {
     implementation("org.lwjgl:lwjgl-yoga::$lwjglNatives")
     implementation("org.lwjgl:lwjgl-zstd::$lwjglNatives")
 
+    implementation("org.joml:joml:1.10.9")
 }
 
 tasks.test {
