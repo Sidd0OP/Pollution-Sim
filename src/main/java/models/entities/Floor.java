@@ -4,6 +4,10 @@ import models.attributes.Material;
 import models.attributes.Mesh;
 import models.attributes.Transform;
 
+import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
+import static org.lwjgl.opengl.GL11.glDrawArrays;
+import static org.lwjgl.opengl.GL20.glUseProgram;
+
 public class Floor {
 
     public Mesh mesh;
@@ -11,15 +15,11 @@ public class Floor {
     public Material material;
 
 
-    //temp
+    //traingle
     float[] vertices = {
-            -0.5f, -0.5f, 0.0f,  // bottom-left
-            0.5f, -0.5f, 0.0f,  // bottom-right
-            0.5f,  0.5f, 0.0f,  // top-right
-
-            -0.5f, -0.5f, 0.0f,  // bottom-left
-            0.5f,  0.5f, 0.0f,  // top-right
-            -0.5f,  0.5f, 0.0f   // top-left
+            -0.5f, -0.5f, 0.0f,
+            0.5f, -0.5f, 0.0f,
+            0.0f,  0.5f, 0.0f
     };
 
     public Floor()
@@ -34,8 +34,15 @@ public class Floor {
     }
 
 
-    void draw()
+    public void draw()
     {
+        material.bind();
+        mesh.bind();
+
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        mesh.unbind();
+        glUseProgram(0);
 
     }
 }

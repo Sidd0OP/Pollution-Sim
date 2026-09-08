@@ -2,6 +2,7 @@ package shaders;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.lwjgl.opengl.GL20.*;
@@ -20,8 +21,9 @@ public class Shader {
     private void load(){
         // read the shader's source code from given file
         String shaderSource;
+        System.out.println("Path" + Path.of(filename).toAbsolutePath());
         try {
-            shaderSource = String.join("\n", Files.readAllLines(Paths.get(filename)));
+            shaderSource = Files.readString(Path.of(filename));
         } catch (IOException e) {
             throw new RuntimeException("Failed to load shader file: " + filename);
         }
