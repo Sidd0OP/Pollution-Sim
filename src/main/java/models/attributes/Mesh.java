@@ -15,7 +15,7 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class Mesh {
 
-    private int vaoId;
+    private final int vaoId;
     private List<Integer> vboIds = new ArrayList<>();
 
     public Mesh(float[] vertices, float[] normals, float[] uvCoordinates)
