@@ -3,6 +3,8 @@ package models.entities;
 import models.attributes.Material;
 import models.attributes.Mesh;
 import models.attributes.Transform;
+import org.joml.Matrix4f;
+import org.joml.Vector4f;
 
 import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 import static org.lwjgl.opengl.GL11.glDrawArrays;
@@ -10,9 +12,9 @@ import static org.lwjgl.opengl.GL20.glUseProgram;
 
 public class Floor {
 
-    public Mesh mesh;
-    public Transform transform;
-    public Material material;
+    private Mesh mesh;
+    private Transform transform;
+    private Material material;
 
 
     //traingle
@@ -26,18 +28,18 @@ public class Floor {
     {
         this.mesh = new Mesh(vertices, null, null);
         this.material = new Material();
-    }
-
-    void Load()
-    {
-
+        this.transform = new Transform();
     }
 
 
-    public void draw()
+
+
+    public void draw(Matrix4f view, Matrix4f projection)
     {
-        material.bind();
-        mesh.bind();
+        material.bind()
+                .setModel(transform.getModelMatrix())
+                .setView(view)
+                .setProjection(projection);
 
         glDrawArrays(GL_TRIANGLES, 0, 3);
 

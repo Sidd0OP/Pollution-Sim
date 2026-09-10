@@ -24,6 +24,8 @@ public class Application {
         loop();
     }
 
+    long currentTime = System.nanoTime();
+    long deltaTime = 0;
 
     private void init()
     {
@@ -33,14 +35,14 @@ public class Application {
 
         window = glfwCreateWindow(800, 800, "Pollution Sim", NULL, NULL);
         if ( window == NULL )throw new RuntimeException("Failed to create the GLFW window");
-        glfwMaximizeWindow(window);
+//        glfwMaximizeWindow(window);
 
 //        update when resized
-        glfwSetFramebufferSizeCallback(window, (long win, int width, int height) -> {
-            this.width = width;
-            this.height = height;
-            glViewport(0, 0, width, height);
-        });
+//        glfwSetFramebufferSizeCallback(window, (long win, int width, int height) -> {
+//            this.width = width;
+//            this.height = height;
+//            glViewport(0, 0, width, height);
+//        });
 
         glfwMakeContextCurrent(window);
         glfwSwapInterval(1);
@@ -52,15 +54,19 @@ public class Application {
     private void loop()
     {
         GL.createCapabilities();
-        glClearColor(0.0f, 0.0f, 1.0f, 0.0f);
+        glClearColor(0.1f, 0.1f, 0.1f, 0.0f);
 
         while ( !glfwWindowShouldClose(window) )
         {
 
+            long now = System.nanoTime();
+            deltaTime = now - currentTime;
+            currentTime = now;
+
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
-            Renderer.update();
+            // update and draw call
+            Renderer.update(window, deltaTime);
             Renderer.draw();
 
             int error = glGetError();
@@ -76,5 +82,6 @@ public class Application {
 
         }
     }
+
 
 }

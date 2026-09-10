@@ -1,5 +1,7 @@
 package shaders;
 
+import org.joml.Matrix4f;
+
 import static org.lwjgl.opengl.GL20.*;
 
 public class ShaderProgram {
@@ -39,12 +41,17 @@ public class ShaderProgram {
         glUseProgram(id);
     }
 
+
+    public void bindUniformMat4(String uniformName, Matrix4f mat)
+    {
+        int loc = glGetUniformLocation(id, uniformName);
+        glUniformMatrix4fv(loc, false, mat.get(new float[16]));
+    }
+
     //free up
     public void delete(){
         glDeleteProgram(id);
     }
-
-
     public int getHandle(){
         return id;
     }

@@ -1,6 +1,8 @@
 package models.attributes;
 
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 import shaders.Shader;
 import shaders.ShaderProgram;
 
@@ -23,9 +25,29 @@ public class Material {
         shader = new ShaderProgram(vs, fs);
     }
 
-    public void bind()
+    public Material bind()
     {
         shader.use();
+        return this;
+    }
+
+
+    public Material setModel(Matrix4f model)
+    {
+        shader.bindUniformMat4("model", model);
+        return this;
+    }
+
+    public Material setView(Matrix4f model)
+    {
+        shader.bindUniformMat4("view", model);
+        return this;
+    }
+
+    public Material setProjection(Matrix4f model)
+    {
+        shader.bindUniformMat4("projection", model);
+        return this;
     }
 
 

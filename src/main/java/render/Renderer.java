@@ -1,23 +1,20 @@
 package render;
 
-import models.entities.Floor;
-
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.glDrawArrays;
-import static org.lwjgl.opengl.GL20.glUseProgram;
+import scene.EmptyScene;
+import scene.Scene;
 
 public class Renderer {
 
-    static Floor floor =  new Floor();
+    static Scene scene1 = new EmptyScene();
 
-    public static void update()
+    public static void update(long window, long deltaTime)
     {
-
+        scene1.update(window,deltaTime);
     }
 
     public static void draw()
     {
-        floor.draw();
+        scene1.draw();
     }
 
 }

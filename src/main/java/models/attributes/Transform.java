@@ -25,7 +25,7 @@ public class Transform {
 
     }
 
-    Matrix4f getModelMatrix()
+    public Matrix4f getModelMatrix()
     {
         return new Matrix4f()
                 .translate(position)
