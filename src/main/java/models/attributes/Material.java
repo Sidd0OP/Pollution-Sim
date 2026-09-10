@@ -38,15 +38,15 @@ public class Material {
         return this;
     }
 
-    public Material setView(Matrix4f model)
+    public Material setView(Matrix4f view)
     {
-        shader.bindUniformMat4("view", model);
+        shader.bindUniformMat4("view", view);
         return this;
     }
 
-    public Material setProjection(Matrix4f model)
+    public Material setProjection(Matrix4f projection)
     {
-        shader.bindUniformMat4("projection", model);
+        shader.bindUniformMat4("projection", projection);
         return this;
     }
 

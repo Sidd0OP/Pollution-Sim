@@ -36,6 +36,8 @@ public class Floor {
 
     public void draw(Matrix4f view, Matrix4f projection)
     {
+
+        mesh.bind();
         material.bind()
                 .setModel(transform.getModelMatrix())
                 .setView(view)

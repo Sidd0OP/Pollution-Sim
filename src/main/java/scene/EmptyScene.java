@@ -5,9 +5,6 @@ import models.entities.Floor;
 public class EmptyScene implements Scene{
 
     Camera camera = new Camera();
-    private long window;
-    private long delta;
-
     Floor floor =  new Floor();
 
     @Override

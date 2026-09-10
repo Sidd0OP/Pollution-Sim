@@ -24,11 +24,10 @@ public class Mesh {
         glBindVertexArray(vaoId);
 
         addVboAttribute(vertices,0,3);
-
         if(normals!=null)addVboAttribute(normals,1,3);
         if(uvCoordinates!=null)addVboAttribute(uvCoordinates,2,2);
 
-        glBindVertexArray(0);
+        glBindVertexArray(vaoId);
     }
 
 
